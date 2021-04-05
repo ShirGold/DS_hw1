@@ -5,7 +5,6 @@ public interface ICharLinkedListNode {
      * @return Characrer stored in the node
      */
     char getChar();
-
     /**
      * Getter for the next node in the list
      * @return next node in the list

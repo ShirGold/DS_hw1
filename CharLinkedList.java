@@ -18,7 +18,6 @@ public abstract class CharLinkedList implements Iterable<Character>{
      * @param c Character to add
      */
     public abstract void add(char c);
-    int a;
     /**
      * Getter for the first character
      * @return The first character in the list
