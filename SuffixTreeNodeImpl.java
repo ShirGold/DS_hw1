@@ -24,4 +24,33 @@ public class SuffixTreeNodeImpl extends SuffixTreeNode {
         }
         return null;
     }
+
+    public void shiftChildren(int until){
+        SuffixTreeNode[] new_children = new SuffixTreeNode[this.totalWordLength];
+        for (int i=0;i<this.totalWordLength;i++){
+            if (i<until)
+                new_children[i] = this.children[i];
+            else
+                new_children[i] = this.children[i-1];
+        }
+        this.children = new_children;
+    }
+
+    public void addChild(SuffixTreeNode node){
+        if (this.numOfChildren == 0){
+            this.children[0] = node;
+            this.numOfChildren++;
+            return;
+        }
+        int until = 0;
+        for (int i=0; i<this.totalWordLength;i++){
+            until++;
+            if(this.children[i] == null)
+                break;
+            if (this.children[i].chars.first.getChar() > node.chars.first.getChar())
+                break;
+        }
+        shiftChildren(until);
+        this.children[until-1] = node;
+    }
 }
