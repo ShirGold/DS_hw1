@@ -38,6 +38,7 @@ public class SuffixTreeNodeImpl extends SuffixTreeNode {
 
     public void addChild(SuffixTreeNode node){
         if (this.numOfChildren == 0){
+            node.parent = this;
             this.children[0] = node;
             this.numOfChildren++;
             return;
@@ -51,6 +52,21 @@ public class SuffixTreeNodeImpl extends SuffixTreeNode {
                 break;
         }
         shiftChildren(until);
+        node.parent = node;
         this.children[until-1] = node;
+        this.numOfChildren++;
+    }
+
+    public void addSuffix(char[] word, int from){
+        if (from == word.length)
+            return;
+        char c = word[from];
+        SuffixTreeNode child = search(c);
+        SuffixTreeNodeImpl node = new SuffixTreeNodeImpl();
+        node.chars = new CharLinkedListImpl(c);
+        if (child==null)
+            addChild(node);
+        else
+            addSuffix(word, from++);
     }
 }
