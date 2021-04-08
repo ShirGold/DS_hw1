@@ -67,7 +67,7 @@ public class SuffixTreeNodeImpl extends SuffixTreeNode {
         if (child==null)
             this.addChild(node);
         else
-            this.addSuffix(word, from++);
+            child.addSuffix(word, from++);
     }
 
     public void compress(){
@@ -82,6 +82,29 @@ public class SuffixTreeNodeImpl extends SuffixTreeNode {
         for (SuffixTreeNode child: this.children){
             child.parent = this;
             child.compress();
+        }
+    }
+
+    public int numOfOccurrences(char[] subword, int from){
+        if (from == subword.length)
+            return this.numOfChildren;
+
+        SuffixTreeNode child = this.search(subword[from]);
+        if (child == null)
+            return 0;
+        else {
+            ICharLinkedListNode char_node = child.chars.first;
+            while (char_node != null){
+                if (char_node.getChar() != subword[from])
+                    return 0;
+                else {
+                    from++;
+                    if (from==subword.length)
+                        return this.numOfChildren;
+                }
+                char_node = char_node.getNext();
+            }
+            return child.numOfOccurrences(subword, from);
         }
     }
 }
