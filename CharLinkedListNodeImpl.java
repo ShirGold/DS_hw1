@@ -3,8 +3,8 @@ public class CharLinkedListNodeImpl implements ICharLinkedListNode{
     private char c;
     private ICharLinkedListNode next;
 
-    public CharLinkedListNodeImpl(char val) {
-        this.c = val;
+    public CharLinkedListNodeImpl(char c) {
+        this.c = c;
         this.next = null;
     }
 
