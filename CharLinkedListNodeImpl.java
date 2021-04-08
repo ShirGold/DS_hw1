@@ -4,7 +4,7 @@ public class CharLinkedListNodeImpl implements ICharLinkedListNode{
     private ICharLinkedListNode next;
 
     public CharLinkedListNodeImpl(char val) {
-        this.c = c;
+        this.c = val;
         this.next = null;
     }
 
