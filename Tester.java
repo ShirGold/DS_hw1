@@ -24,8 +24,8 @@ public class Tester {
 		// longestRepeatedSuffixTree
 		testLongestRepeatedSuffixTree();
 */
-		/* TODO - continue writing a function for each class */
-
+		//SuffixTree
+		Tree_tests();
 		
 		// Notifying the user that the code have passed all tests. 
 		if (testPassed) {
@@ -86,6 +86,10 @@ public class Tester {
 		SuffixTreeNode child5 = new SuffixTreeNodeImpl(CharLinkedList.from("dog"), node);
 		node.addChild(child5);
 		test(node.getChildren()[2] == child5, "3rd child should be child5");
+	}
+	private static void Tree_tests(){
+		SuffixTree tree = new SuffixTreeImpl("mississippi");
+		test(tree.root.numOfChildren == 4, "Tree root should have 4 children");
 	}
 /*
 	private static void testLongestRepeatedSuffixTree(){

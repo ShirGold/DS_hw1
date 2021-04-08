@@ -32,11 +32,11 @@ public class SuffixTreeNodeImpl extends SuffixTreeNode {
 
     public void shiftChildren(int until){
         SuffixTreeNode[] new_children = new SuffixTreeNode[this.children.length];
-        for (int i=0;i<this.numOfChildren;i++){
-            if (i<until)
-                new_children[i] = this.children[i];
-            else
+        for (int i=this.numOfChildren;i>=0;i--){
+            if (i>until)
                 new_children[i] = this.children[i-1];
+            else
+                new_children[i] = this.children[i];
         }
         this.children = new_children;
     }
@@ -50,15 +50,15 @@ public class SuffixTreeNodeImpl extends SuffixTreeNode {
         }
         int until = 0;
         for (int i=0; i<this.numOfChildren;i++){
-            until++;
             if(this.children[i] == null)
                 break;
             if (this.children[i].chars.first.getChar() > node.chars.first.getChar())
                 break;
+            until++;
         }
         this.shiftChildren(until);
-        node.parent = node;
-        this.children[until-1] = node;
+        node.parent = this;
+        this.children[until] = node;
         this.numOfChildren++;
     }
 
@@ -69,10 +69,16 @@ public class SuffixTreeNodeImpl extends SuffixTreeNode {
         SuffixTreeNode child = search(c);
         SuffixTreeNodeImpl node = new SuffixTreeNodeImpl();
         node.chars = new CharLinkedListImpl(c);
-        if (child==null)
-            this.addChild(node);
-        else
-            child.addSuffix(word, from++);
+        from++;
+        if (child==null) {
+            if (this.parent != null || c!='$') {
+                this.addChild(node);
+                node.addSuffix(word, from);
+            }
+        }
+        else {
+            child.addSuffix(word, from);
+        }
     }
 
     public void compress(){
@@ -81,12 +87,17 @@ public class SuffixTreeNodeImpl extends SuffixTreeNode {
                 SuffixTreeNode only_child = this.children[0];
                 this.chars.add(only_child.chars.first.getChar());
                 this.children = only_child.children;
-
+                this.numOfChildren = only_child.numOfChildren;
+                this.compress();
             }
         }
-        for (SuffixTreeNode child: this.children){
-            child.parent = this;
-            child.compress();
+        else {
+            for (int i = 0; i < this.numOfChildren; i++) {
+                if (this.children[i] != null) {
+                    this.children[i].parent = this;
+                    this.children[i].compress();
+                }
+            }
         }
     }
 
