@@ -2,6 +2,11 @@ public class SuffixTreeNodeImpl extends SuffixTreeNode {
 
     public SuffixTreeNodeImpl(){super();}
 
+    public SuffixTreeNodeImpl(CharLinkedList chars, SuffixTreeNode node){
+        this.chars = chars;
+        this.parent = node;
+    }
+
     public SuffixTreeNode search(char c){
         return binarySearch(c, 0, (this.numOfChildren-1));
     }
@@ -26,8 +31,8 @@ public class SuffixTreeNodeImpl extends SuffixTreeNode {
     }
 
     public void shiftChildren(int until){
-        SuffixTreeNode[] new_children = new SuffixTreeNode[this.totalWordLength];
-        for (int i=0;i<this.totalWordLength;i++){
+        SuffixTreeNode[] new_children = new SuffixTreeNode[this.children.length];
+        for (int i=0;i<this.numOfChildren;i++){
             if (i<until)
                 new_children[i] = this.children[i];
             else
@@ -44,7 +49,7 @@ public class SuffixTreeNodeImpl extends SuffixTreeNode {
             return;
         }
         int until = 0;
-        for (int i=0; i<this.totalWordLength;i++){
+        for (int i=0; i<this.numOfChildren;i++){
             until++;
             if(this.children[i] == null)
                 break;

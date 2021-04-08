@@ -20,10 +20,10 @@ public class Tester {
 
 		// SuffixTreeNode
 		testSuffixTreeNode(); 
-
+/*
 		// longestRepeatedSuffixTree
 		testLongestRepeatedSuffixTree();
-		
+*/
 		/* TODO - continue writing a function for each class */
 
 		
@@ -87,7 +87,7 @@ public class Tester {
 		node.addChild(child5);
 		test(node.getChildren()[2] == child5, "3rd child should be child5");
 	}
-
+/*
 	private static void testLongestRepeatedSuffixTree(){
 		testLongestRepeated("mississippi", "issi");
 		testLongestRepeated("abc", "X");
@@ -97,5 +97,5 @@ public class Tester {
 	private static void testLongestRepeated(String word, String expected){
 		test(new longestRepeatedSuffixTreeImpl(word).getLongestRepeatedSubstring().equals(expected), "Longest repeated substring should be " + expected);
 	}
-
+*/
 }
