@@ -94,6 +94,8 @@ public class Tester {
 		test(tree.numOfOccurrences("pss")==0, "pss apears 0 times");
 		test(tree.numOfOccurrences("mississippi")==1, "mississippi apears 1 times");
 		test(tree.numOfOccurrences("i")==4, "i apears 4 times");
+		test(tree.root.children[1].totalWordLength == 12, "Node totalWordLength should be 11 and is " +tree.root.children[1].totalWordLength);
+		test(tree.root.children[0].children[1].totalWordLength == 5, "Node totalWordLength should be 4 and is "+tree.root.children[0].children[1].totalWordLength);
 	}
 /*
 	private static void testLongestRepeatedSuffixTree(){
