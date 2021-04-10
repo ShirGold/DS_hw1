@@ -42,12 +42,6 @@ public class SuffixTreeNodeImpl extends SuffixTreeNode {
     }
 
     public void addChild(SuffixTreeNode node){
-        if (this.numOfChildren == 0){
-            node.parent = this;
-            this.children[0] = node;
-            this.numOfChildren++;
-            return;
-        }
         int until = 0;
         for (int i=0; i<this.numOfChildren;i++){
             if(this.children[i] == null)
@@ -57,9 +51,19 @@ public class SuffixTreeNodeImpl extends SuffixTreeNode {
             until++;
         }
         this.shiftChildren(until);
-        node.parent = this;
+        node.totalWordLength = this.totalWordLength+node.chars.size();
         this.children[until] = node;
+        node.parent = this;
         this.numOfChildren++;
+        if (this.numOfChildren>1){
+            SuffixTreeNode curr_par = this;
+            while (curr_par != null){
+                curr_par.descendantLeaves++;
+                curr_par = curr_par.parent;
+            }
+        }
+        else
+            this.descendantLeaves=1;
     }
 
     public void addSuffix(char[] word, int from){
@@ -88,6 +92,7 @@ public class SuffixTreeNodeImpl extends SuffixTreeNode {
                 this.chars.add(only_child.chars.first.getChar());
                 this.children = only_child.children;
                 this.numOfChildren = only_child.numOfChildren;
+                this.totalWordLength = only_child.totalWordLength;
                 this.compress();
             }
         }
@@ -103,7 +108,7 @@ public class SuffixTreeNodeImpl extends SuffixTreeNode {
 
     public int numOfOccurrences(char[] subword, int from){
         if (from == subword.length)
-            return this.numOfChildren;
+            return this.descendantLeaves;
 
         SuffixTreeNode child = this.search(subword[from]);
         if (child == null)
@@ -116,7 +121,7 @@ public class SuffixTreeNodeImpl extends SuffixTreeNode {
                 else {
                     from++;
                     if (from==subword.length)
-                        return this.numOfChildren;
+                        return child.descendantLeaves;
                 }
                 char_node = char_node.getNext();
             }

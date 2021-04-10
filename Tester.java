@@ -90,6 +90,10 @@ public class Tester {
 	private static void Tree_tests(){
 		SuffixTree tree = new SuffixTreeImpl("mississippi");
 		test(tree.root.numOfChildren == 4, "Tree root should have 4 children");
+		test(tree.numOfOccurrences("iss")==2, "ssi apears 2 times");
+		test(tree.numOfOccurrences("pss")==0, "pss apears 0 times");
+		test(tree.numOfOccurrences("mississippi")==1, "mississippi apears 1 times");
+		test(tree.numOfOccurrences("i")==4, "i apears 4 times");
 	}
 /*
 	private static void testLongestRepeatedSuffixTree(){
