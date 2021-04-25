@@ -97,7 +97,7 @@ public class Tester {
 		test(tree.root.children[1].totalWordLength == 12, "Node totalWordLength should be 11 and is " +tree.root.children[1].totalWordLength);
 		test(tree.root.children[0].children[1].totalWordLength == 5, "Node totalWordLength should be 4 and is "+tree.root.children[0].children[1].totalWordLength);
 	}
-/*
+
 	private static void testLongestRepeatedSuffixTree(){
 		testLongestRepeated("mississippi", "issi");
 		testLongestRepeated("abc", "X");
@@ -107,5 +107,5 @@ public class Tester {
 	private static void testLongestRepeated(String word, String expected){
 		test(new longestRepeatedSuffixTreeImpl(word).getLongestRepeatedSubstring().equals(expected), "Longest repeated substring should be " + expected);
 	}
-*/
+
 }
