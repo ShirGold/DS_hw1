@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1a1ed3a-f5f0-409b-a702-6733b070bd52" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/CharLinkedListImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CharLinkedListNodeImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CompressedTrieImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SuffixTreeImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SuffixTreeNodeImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/longestRepeatedSuffixTreeImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompressedTrieImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SuffixTreeImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/SuffixTreeImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

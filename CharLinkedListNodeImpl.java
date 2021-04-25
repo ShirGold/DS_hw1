@@ -1,15 +1,22 @@
 public class CharLinkedListNodeImpl implements ICharLinkedListNode{
 
-    private char val;
+    private char c;
     private ICharLinkedListNode next;
 
-    public CharLinkedListImpl(char val) {
-        this.val = val;
+    public CharLinkedListNodeImpl(char c) {
+        this.c = c;
         this.next = null;
     }
 
-    @Override
     public char getChar() {
-        return this.val;
+        return this.c;
+    }
+
+    public ICharLinkedListNode getNext() {
+        return this.next;
+    }
+
+    public void setNext(ICharLinkedListNode next) {
+        this.next = next;
     }
 }
